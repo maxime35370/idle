@@ -70,7 +70,7 @@ export default function RaceView() {
       <div className="rounds-progress">
         {rounds.map((r, i) => (
           <div
-            key={r.circuit.id}
+            key={`${r.circuit.id}-${i}`}
             className={`round-dot ${r.completed ? 'done' : ''} ${i === currentRoundIndex && phase !== 'seasonEnd' ? 'current' : ''}`}
             title={r.circuit.name}
           >

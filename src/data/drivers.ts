@@ -1,11 +1,13 @@
 import type { OpponentDriver } from '../types/game';
 
 export const REGIONAL_DRIVERS: OpponentDriver[] = [
-  { id: 'r1', name: 'Marc Dubois', strength: 120, style: 'aggressive', nationality: '🇫🇷' },
-  { id: 'r2', name: 'Lars Eriksson', strength: 140, style: 'consistent', nationality: '🇸🇪' },
-  { id: 'r3', name: 'Kevin Walsh', strength: 110, style: 'technical', nationality: '🇬🇧' },
-  { id: 'r4', name: 'Timo Fischer', strength: 130, style: 'aggressive', nationality: '🇩🇪' },
-  { id: 'r5', name: 'Sofia Martins', strength: 125, style: 'technical', nationality: '🇵🇹' },
+  { id: 'r1', name: 'Marc Dubois', strength: 70, style: 'aggressive', nationality: '🇫🇷' },
+  { id: 'r2', name: 'Lars Eriksson', strength: 95, style: 'consistent', nationality: '🇸🇪' },
+  { id: 'r3', name: 'Kevin Walsh', strength: 60, style: 'technical', nationality: '🇬🇧' },
+  { id: 'r4', name: 'Timo Fischer', strength: 85, style: 'aggressive', nationality: '🇩🇪' },
+  { id: 'r5', name: 'Sofia Martins', strength: 75, style: 'technical', nationality: '🇵🇹' },
+  { id: 'r6', name: 'Jonas Halvorsen', strength: 90, style: 'consistent', nationality: '🇳🇴' },
+  { id: 'r7', name: 'Anna Novak', strength: 80, style: 'aggressive', nationality: '🇨🇿' },
 ];
 
 export const NATIONAL_DRIVERS: OpponentDriver[] = [

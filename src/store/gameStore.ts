@@ -19,31 +19,31 @@ const CHAMPIONSHIP_CONFIG: Record<
   regional: {
     name: 'Championnat Régional',
     requiredRep: 0,
-    circuits: ['helmond', 'mettet', 'lohéac'],
+    circuits: ['helmond', 'mettet', 'lohéac', 'montalegre', 'höljes'],
     drivers: REGIONAL_DRIVERS,
   },
   national: {
     name: 'Championnat National',
     requiredRep: 100,
-    circuits: ['höljes', 'trois_rivieres', 'lohéac', 'mettet'],
+    circuits: ['höljes', 'trois_rivieres', 'lohéac', 'mettet', 'helmond', 'montalegre'],
     drivers: NATIONAL_DRIVERS,
   },
   euroRX: {
     name: 'Euro RX Challengers',
     requiredRep: 400,
-    circuits: ['barcelona', 'höljes', 'silverstone', 'mettet', 'montalegre'],
+    circuits: ['barcelona', 'höljes', 'silverstone', 'mettet', 'montalegre', 'lohéac', 'helmond', 'trois_rivieres'],
     drivers: EURORX_DRIVERS,
   },
   worldRX: {
     name: 'World RX',
     requiredRep: 1000,
-    circuits: ['silverstone', 'höljes', 'trois_rivieres', 'barcelona', 'montalegre', 'lohéac'],
+    circuits: ['silverstone', 'höljes', 'trois_rivieres', 'barcelona', 'montalegre', 'lohéac', 'mettet', 'helmond', 'barcelona', 'höljes'],
     drivers: WORLDRX_DRIVERS,
   },
   title: {
     name: 'Bataille pour le Titre',
     requiredRep: 3000,
-    circuits: CIRCUITS.map((c) => c.id),
+    circuits: [...CIRCUITS.map((c) => c.id), 'höljes', 'lohéac', 'silverstone', 'montalegre'],
     drivers: TITLE_DRIVERS,
   },
 };
@@ -63,7 +63,7 @@ function initialState(): Omit<GameState, 'phase' | 'lastTickTime'> {
     money: 1000,
     reputation: 0,
     prestigeTokens: 0,
-    car: { engine: 100, aero: 80, transmission: 90, suspension: 85, tires: 75, driver: 95 },
+    car: { engine: 110, aero: 85, transmission: 100, suspension: 90, tires: 80, driver: 100 },
     upgrades: BASE_UPGRADES.map((u) => ({ ...u })),
     currentChampionship: 'regional',
     currentRoundIndex: 0,
@@ -246,6 +246,7 @@ export const useGameStore = create<Store>()(
     }),
     {
       name: 'rallycross-idle-save',
+      version: 2,
     }
   )
 );
