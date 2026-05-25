@@ -1,0 +1,68 @@
+import type { Circuit } from '../types/game';
+
+export const CIRCUITS: Circuit[] = [
+  {
+    id: 'helmond',
+    name: 'Helmond',
+    country: '🇳🇱 Pays-Bas',
+    surface: 'mixed',
+    length: 1100,
+    modifiers: { engine: 1.0, aero: 0.8, suspension: 1.1, tires: 1.0 },
+  },
+  {
+    id: 'mettet',
+    name: 'Circuit Jules Tacheny - Mettet',
+    country: '🇧🇪 Belgique',
+    surface: 'asphalt',
+    length: 950,
+    modifiers: { engine: 1.2, aero: 1.0, suspension: 0.8, tires: 1.1 },
+  },
+  {
+    id: 'lohéac',
+    name: 'Lohéac',
+    country: '🇫🇷 France',
+    surface: 'mixed',
+    length: 1280,
+    modifiers: { engine: 1.1, aero: 0.9, suspension: 1.0, tires: 1.0 },
+  },
+  {
+    id: 'höljes',
+    name: 'Höljes',
+    country: '🇸🇪 Suède',
+    surface: 'dirt',
+    length: 1080,
+    modifiers: { engine: 0.9, aero: 0.7, suspension: 1.3, tires: 1.2 },
+  },
+  {
+    id: 'trois_rivieres',
+    name: 'Trois-Rivières',
+    country: '🇨🇦 Canada',
+    surface: 'asphalt',
+    length: 1350,
+    modifiers: { engine: 1.3, aero: 1.2, suspension: 0.9, tires: 0.9 },
+  },
+  {
+    id: 'barcelona',
+    name: 'Circuit de Catalunya',
+    country: '🇪🇸 Espagne',
+    surface: 'asphalt',
+    length: 900,
+    modifiers: { engine: 1.1, aero: 1.2, suspension: 0.8, tires: 1.0 },
+  },
+  {
+    id: 'silverstone',
+    name: 'Silverstone RX',
+    country: '🇬🇧 Royaume-Uni',
+    surface: 'mixed',
+    length: 1400,
+    modifiers: { engine: 1.0, aero: 1.1, suspension: 1.0, tires: 1.1 },
+  },
+  {
+    id: 'montalegre',
+    name: 'Montalegre',
+    country: '🇵🇹 Portugal',
+    surface: 'dirt',
+    length: 1050,
+    modifiers: { engine: 0.8, aero: 0.7, suspension: 1.4, tires: 1.3 },
+  },
+];
