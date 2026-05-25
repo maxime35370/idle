@@ -258,6 +258,51 @@ body {
   font-size: 0.95rem;
 }
 
+.format-info {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+/* ===== Weekend Recap ===== */
+.weekend-recap { display: flex; flex-direction: column; gap: 10px; }
+
+.recap-header {
+  background: var(--surface2);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.recap-circuit { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
+.recap-status { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; color: var(--accent2); }
+.recap-rewards { font-size: 0.82rem; color: var(--success); }
+
+.phase-details {
+  background: var(--surface2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+}
+
+.phase-details summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 4px 0;
+  user-select: none;
+}
+
+.phase-details summary:hover { color: var(--accent2); }
+.phase-details[open] summary { margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+
+.phase-block { margin-top: 4px; }
+.phase-title { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; }
+
+.qualified-row td { background: rgba(46, 204, 113, 0.08); }
+.qualified-row.player-row td { background: rgba(244, 164, 42, 0.12); }
+
 /* ===== Shop ===== */
 .shop-grid { display: flex; flex-direction: column; gap: 10px; }
 

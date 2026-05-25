@@ -10,7 +10,7 @@ import {
   TITLE_DRIVERS,
 } from '../data/drivers';
 import { BASE_UPGRADES } from '../data/upgrades';
-import { simulateRace } from '../engine/race';
+import { simulateWeekend, type WeekendResult } from '../engine/weekend';
 
 const CHAMPIONSHIP_CONFIG: Record<
   ChampionshipTier,
@@ -53,8 +53,7 @@ function buildRounds(tier: ChampionshipTier): Round[] {
   return config.circuits.map((cid) => ({
     circuit: CIRCUITS.find((c) => c.id === cid)!,
     completed: false,
-    playerPosition: null,
-    results: [],
+    playerOverallPosition: null,
   }));
 }
 
@@ -76,16 +75,18 @@ function initialState(): Omit<GameState, 'phase' | 'lastTickTime'> {
 }
 
 interface GameActions {
-  raceNextRound: () => void;
+  runWeekend: () => void;
   buyUpgrade: (upgradeId: string) => void;
   endSeason: () => void;
   restartSeason: () => void;
   selectChampionship: (tier: ChampionshipTier) => void;
   tick: () => void;
+  clearLastWeekend: () => void;
 }
 
 type Store = GameState & {
   rounds: Round[];
+  lastWeekend: WeekendResult | null;
 } & GameActions;
 
 export const useGameStore = create<Store>()(
@@ -95,10 +96,11 @@ export const useGameStore = create<Store>()(
       phase: 'idle' as const,
       lastTickTime: Date.now(),
       rounds: buildRounds('regional'),
+      lastWeekend: null,
 
-      raceNextRound() {
+      runWeekend() {
         const state = get();
-        if (state.phase === 'racing') return;
+        if (state.phase === 'seasonEnd') return;
         const { rounds, currentRoundIndex, car, prestige } = state;
         if (currentRoundIndex >= rounds.length) return;
 
@@ -107,12 +109,12 @@ export const useGameStore = create<Store>()(
         const prestigeBonus =
           prestige.regulationKnowledge * 3 + prestige.teamMorale * 2;
 
-        const results = simulateRace(car, round.circuit, config.drivers, prestigeBonus);
-        const playerResult = results.find((r) => r.isPlayer)!;
+        const weekend = simulateWeekend(car, round.circuit, config.drivers, prestigeBonus);
+        const playerOutcome = weekend.playerOutcome;
 
         const updatedRounds = rounds.map((r, i) =>
           i === currentRoundIndex
-            ? { ...r, completed: true, playerPosition: playerResult.position, results }
+            ? { ...r, completed: true, playerOverallPosition: playerOutcome.overallPosition }
             : r
         );
 
@@ -124,23 +126,28 @@ export const useGameStore = create<Store>()(
             ];
 
         const updatedStandings = prevStandings.map((s) => {
-          if (s.isPlayer) return { ...s, points: s.points + playerResult.points };
-          const opponentResult = results.find((r) => r.driverName.includes(s.driverName));
-          return { ...s, points: s.points + (opponentResult?.points ?? 0) };
+          if (s.isPlayer) return { ...s, points: s.points + playerOutcome.pointsScored };
+          const opponentOutcome = weekend.outcomes.find((o) => o.name.includes(s.driverName));
+          return { ...s, points: s.points + (opponentOutcome?.pointsScored ?? 0) };
         });
         updatedStandings.sort((a, b) => b.points - a.points);
 
         const isLastRound = currentRoundIndex + 1 >= rounds.length;
-        const repGain = Math.max(0, (config.drivers.length - playerResult.position + 1) * 5);
+        const repGain = Math.max(0, (8 - playerOutcome.overallPosition + 1) * 5);
 
         set({
           phase: isLastRound ? 'seasonEnd' : 'idle',
-          money: state.money + playerResult.earnings,
+          money: state.money + playerOutcome.earnings,
           reputation: state.reputation + repGain,
           rounds: updatedRounds,
           currentRoundIndex: isLastRound ? currentRoundIndex : currentRoundIndex + 1,
           championshipStandings: updatedStandings,
+          lastWeekend: weekend,
         });
+      },
+
+      clearLastWeekend() {
+        set({ lastWeekend: null });
       },
 
       buyUpgrade(upgradeId) {
@@ -162,7 +169,6 @@ export const useGameStore = create<Store>()(
       endSeason() {
         const state = get();
         const standings = state.championshipStandings;
-        const playerStanding = standings.find((s) => s.isPlayer);
         const playerPos = standings.findIndex((s) => s.isPlayer) + 1;
 
         const tokensEarned = Math.max(1, Math.floor((standings.length - playerPos + 1) * 1.5));
@@ -193,7 +199,7 @@ export const useGameStore = create<Store>()(
           championshipStandings: [],
           rounds: buildRounds(state.currentChampionship),
           passiveIncome: state.passiveIncome + 10,
-          ...(playerStanding ? {} : {}),
+          lastWeekend: null,
         });
       },
 
@@ -220,6 +226,7 @@ export const useGameStore = create<Store>()(
           rounds: buildRounds(state.currentChampionship),
           currentChampionship: state.currentChampionship,
           passiveIncome: 50 + newPrestige.sponsorBonus * 5,
+          lastWeekend: null,
         });
       },
 
@@ -232,6 +239,7 @@ export const useGameStore = create<Store>()(
           championshipStandings: [],
           rounds: buildRounds(tier),
           phase: 'idle',
+          lastWeekend: null,
         });
       },
 
@@ -246,7 +254,7 @@ export const useGameStore = create<Store>()(
     }),
     {
       name: 'rallycross-idle-save',
-      version: 2,
+      version: 3,
     }
   )
 );

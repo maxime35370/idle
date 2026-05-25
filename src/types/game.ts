@@ -44,20 +44,10 @@ export interface Upgrade {
   maxLevel: number;
 }
 
-export interface RaceResult {
-  driverName: string;
-  isPlayer: boolean;
-  score: number;
-  position: number;
-  points: number;
-  earnings: number;
-}
-
 export interface Round {
   circuit: Circuit;
   completed: boolean;
-  playerPosition: number | null;
-  results: RaceResult[];
+  playerOverallPosition: number | null;
 }
 
 export type ChampionshipTier =

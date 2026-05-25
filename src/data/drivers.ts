@@ -28,26 +28,24 @@ export const EURORX_DRIVERS: OpponentDriver[] = [
   { id: 'e5', name: 'Carlos Vega', strength: 710, style: 'technical', nationality: '🇪🇸' },
   { id: 'e6', name: 'Annika Holm', strength: 640, style: 'aggressive', nationality: '🇳🇴' },
   { id: 'e7', name: 'Dave Cooper', strength: 590, style: 'consistent', nationality: '🇬🇧' },
-  { id: 'e8', name: 'Igor Petrenko', strength: 670, style: 'aggressive', nationality: '🇺🇦' },
-  { id: 'e9', name: 'Luís Carvalho', strength: 615, style: 'technical', nationality: '🇵🇹' },
 ];
 
 export const WORLDRX_DRIVERS: OpponentDriver[] = [
-  { id: 'w1', name: 'Johan Ekstrom', strength: 1050, style: 'consistent', nationality: '🇸🇪' },
-  { id: 'w2', name: 'Thierry Laurent', strength: 1120, style: 'technical', nationality: '🇫🇷' },
-  { id: 'w3', name: 'Andreas Prokop', strength: 980, style: 'aggressive', nationality: '🇩🇪' },
-  { id: 'w4', name: 'Scott Harrison', strength: 1080, style: 'consistent', nationality: '🇺🇸' },
-  { id: 'w5', name: 'Mikko Saarinen', strength: 1150, style: 'technical', nationality: '🇫🇮' },
-  { id: 'w6', name: 'Pedro Albuquerque', strength: 1000, style: 'aggressive', nationality: '🇵🇹' },
-  { id: 'w7', name: 'Nils Andersen', strength: 1200, style: 'consistent', nationality: '🇩🇰' },
-  { id: 'w8', name: 'Riku Mäkinen', strength: 1090, style: 'technical', nationality: '🇫🇮' },
-  { id: 'w9', name: 'Valentina Rossi', strength: 970, style: 'consistent', nationality: '🇮🇹' },
-  { id: 'w10', name: 'James Fletcher', strength: 1060, style: 'aggressive', nationality: '🇦🇺' },
-  { id: 'w11', name: 'Éric Bouchard', strength: 1130, style: 'technical', nationality: '🇨🇦' },
+  { id: 'w1', name: 'Nils Andersen', strength: 1200, style: 'consistent', nationality: '🇩🇰' },
+  { id: 'w2', name: 'Mikko Saarinen', strength: 1150, style: 'technical', nationality: '🇫🇮' },
+  { id: 'w3', name: 'Éric Bouchard', strength: 1130, style: 'technical', nationality: '🇨🇦' },
+  { id: 'w4', name: 'Thierry Laurent', strength: 1120, style: 'technical', nationality: '🇫🇷' },
+  { id: 'w5', name: 'Riku Mäkinen', strength: 1090, style: 'technical', nationality: '🇫🇮' },
+  { id: 'w6', name: 'Scott Harrison', strength: 1080, style: 'consistent', nationality: '🇺🇸' },
+  { id: 'w7', name: 'James Fletcher', strength: 1060, style: 'aggressive', nationality: '🇦🇺' },
 ];
 
 export const TITLE_DRIVERS: OpponentDriver[] = [
-  { id: 't1', name: 'Viktor Kronqvist', strength: 1450, style: 'consistent', nationality: '🇸🇪' },
+  { id: 't1', name: 'Magnus Thorvaldsen', strength: 1500, style: 'aggressive', nationality: '🇳🇴' },
   { id: 't2', name: 'Damien Leroux', strength: 1480, style: 'technical', nationality: '🇫🇷' },
-  { id: 't3', name: 'Magnus Thorvaldsen', strength: 1500, style: 'aggressive', nationality: '🇳🇴' },
+  { id: 't3', name: 'Viktor Kronqvist', strength: 1450, style: 'consistent', nationality: '🇸🇪' },
+  { id: 't4', name: 'Esa Korhonen', strength: 1420, style: 'technical', nationality: '🇫🇮' },
+  { id: 't5', name: 'Henrik Nilsson', strength: 1400, style: 'technical', nationality: '🇸🇪' },
+  { id: 't6', name: 'Antoine Beaumont', strength: 1380, style: 'consistent', nationality: '🇫🇷' },
+  { id: 't7', name: 'Alexander Reinhardt', strength: 1350, style: 'aggressive', nationality: '🇩🇪' },
 ];
